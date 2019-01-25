@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:form="http://www.w3.org/1999/html">
+<head>
+    <title>Getting Started: Handling Form Submission</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<form action="#" th:action="@{/pages}" th:object="${form}" method="post">
+    <p>Url: <input type="text" th:field="*{url}" /></p>
+    <p>Search Text: <input type="text" th:field="*{searchText}" /></p>
+    <p>Thread Count: <input type="text" th:field="*{threadCount}" /></p>
+    <p>Url Max Count: <input type="text" th:field="*{urlMaxCount}" /></p>
+    <p><input type="submit" value="start" /></p>
+</form>
+<form action="#" th:action="@{/stop}" method="GET">
+    <p><input type="submit" value="stop" /></p>
+</form>
+<form action="#" th:action="@{/refresh}" method="GET">
+    <p><input type="submit" value="refresh" /></p>
+</form>
+<form action="#" th:action="@{/resume}" method="GET">
+    <p><input type="submit" value="resume" /></p>
+</form>
+<form action="#" th:action="@{/pause}" method="GET">
+    <p><input type="submit" value="pause" /></p>
+</form>
+<p th:text="'Percent Bar Percent = ' + ${statusBarPercent}"></p>
+<table>
+    <tr>
+        <td>URL</td>
+        <td>Status</td>
+        <td>Information</td>
+    </tr>
+    <th:block th:each="page : ${pages}">
+        <tr>
+            <td width="60px" style="word-wrap:break-word;" th:text="${page.url}">.....</td>
+            <td th:text="${page.status}">.....</td>
+            <td th:text="${page.getAdditionalInformation()}">.....</td>
+        </tr>
+    </th:block>
+</table>
+</body>
+</html>
